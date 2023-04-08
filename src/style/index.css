@@ -1,0 +1,125 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+body p {
+  margin: 5px;
+}
+
+.active {
+  color: rgb(60, 255, 0) !important;
+}
+
+.navLink {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row;
+  gap: 16px;
+  margin: 0 0 1rem 0;
+  background-color: rgba(0, 0, 0, 0.4509803922);
+  padding: 8px 20px;
+}
+.navLink a {
+  text-decoration: none;
+  color: white;
+  padding: 10px 12px;
+  border: 1px solid cyan;
+  border-radius: 4px;
+}
+.navLink a:hover {
+  background-color: cyan;
+  border: 1px solid blueviolet;
+  color: black;
+}
+
+.navRight {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: row;
+  gap: 16px;
+}
+
+.signup {
+  display: flex;
+  justify-content: none;
+  align-items: center;
+  flex-direction: column;
+  gap: 16px;
+}
+.signup .signup_inputs {
+  display: flex;
+  justify-content: none;
+  align-items: none;
+  flex-direction: column;
+  gap: 16px;
+  border: 2px solid rgba(0, 0, 0, 0.3607843137);
+  padding: 2rem 1.4rem;
+}
+.signup .signup_inputs input {
+  width: 350px;
+  padding: 0.5rem;
+  border: 2px solid green;
+}
+.signup .signup_inputs input:hover {
+  border-radius: 5px;
+}
+.signup .signup_inputs button {
+  padding: 0.5rem;
+  border: 2px solid green;
+  background-color: blue;
+  width: 20%;
+  color: #fff;
+}
+.signup .signup_inputs button:hover {
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.product {
+  margin: 50px 0 50px 50px;
+  width: 98%;
+  margin: auto;
+  border-top: 2px solid blueviolet;
+}
+.product .productMain {
+  display: flex;
+  justify-content: none;
+  align-items: none;
+  flex-direction: row;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+  width: 90%;
+  margin: auto;
+  padding: 0 0 50px 0;
+}
+.product .filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0;
+  margin: 20px 0;
+}
+.product .filter h3 {
+  border: 2px solid blue;
+  line-height: 0.8rem;
+  margin-top: 0;
+  padding: 12px 16px;
+  cursor: pointer;
+  margin-left: 5px;
+}
+
+.footer {
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  padding: 0.5rem 0;
+  background-color: rgba(0, 0, 0, 0.4509803922);
+}
+
+/*# sourceMappingURL=index.css.map */

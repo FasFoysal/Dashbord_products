@@ -1,0 +1,122 @@
+$active_color: rgb(60, 255, 0);
+$link_hover_color: cyan;
+$link_background: #00000073;
+$link_text_color: white;
+
+@mixin flex($j_c, $a_i, $f_d, $gap) {
+    display: flex;
+    justify-content: $j_c;
+    align-items: $a_i;
+    flex-direction: $f_d;
+    gap: $gap;
+}
+
+// @include flex(center,none,none,16px);
+
+body {
+    margin: 0;
+    padding: 0;
+    p{
+        margin: 5px;
+    }
+}
+
+.active {
+    color: $active_color !important;
+}
+
+.navLink {
+    @include flex(flex-start, center, row, 16px);
+    // gap: 16px;
+    margin: 0 0 1rem 0;
+    background-color: $link_background;
+    padding: 8px 20px;
+
+    a {
+        text-decoration: none;
+        color: $link_text_color;
+        padding: 10px 12px;
+        border: 1px solid cyan;
+        border-radius: 4px;
+
+        &:hover {
+            background-color: $link_hover_color;
+            border: 1px solid blueviolet;
+            color: black;
+        }
+    }
+}
+
+.navRight {
+    @include flex(flex-end, center, row, 16px);
+}
+
+.signup {
+    @include flex(none, center, column, 16px);
+
+    .signup_inputs {
+        @include flex(none, none, column, 16px);
+        border: 2px solid #0000005c;
+        padding: 2rem 1.4rem;
+
+        input {
+            width: 350px;
+            padding: 0.5rem;
+            border: 2px solid green;
+
+            &:hover {
+                border-radius: 5px;
+            }
+        }
+
+        button{
+            padding: 0.5rem;
+            border: 2px solid green;
+            background-color: blue;
+            width: 20%;
+            color: #fff;
+            &:hover {
+                cursor: pointer;
+                border-radius: 5px;
+            }
+        }
+    }
+}
+.product{
+    margin: 50px 0 50px 50px;
+    width: 98%;
+    margin: auto;
+    border-top:2px solid blueviolet;
+    .productMain {
+        @include flex(none, none, row, 16px);
+        flex-wrap: wrap;
+        margin-bottom: 100px;
+        width: 90%;
+        margin: auto;
+        padding: 0 0 50px 0
+    }
+    
+    .filter {
+        @include flex(center, center, row, 0);
+        margin: 20px 0;
+        h3 {
+            border: 2px solid blue;
+            line-height: .8rem;
+            margin-top: 0;
+            padding: 12px 16px ;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+    }
+}
+
+
+.footer {
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    text-align: center;
+    width: 100%;
+    padding: .5rem 0;
+    background-color: $link_background;
+}
