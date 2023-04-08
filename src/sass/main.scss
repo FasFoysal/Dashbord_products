@@ -71,10 +71,13 @@ body {
 
         button{
             padding: 0.5rem;
-            border: 2px solid green;
-            background-color: blue;
-            width: 20%;
-            color: #fff;
+            border: 1px solid darkblue;
+            background-color: lightblue;
+            padding: 8px 20px;
+            color: green;
+            margin: auto;
+            border-radius: 5px;
+            font-weight: bolder;
             &:hover {
                 cursor: pointer;
                 border-radius: 5px;
@@ -127,5 +130,89 @@ body {
             box-shadow: 0px 0px 5px 2px darkblue;
     padding: 10px;
         
+    }
+}
+// ------ responsive
+.line{
+    display: none
+}
+.hide{
+    display: none;
+}
+.search{
+    display: block;
+}
+.responsoiveLogin{
+    display: none;
+}
+@media only screen and (max-width:620px){
+    .line{
+        @include flex(none,none,column,5px);
+        width: 40px;
+        span{
+            padding:2px 6px;
+            background-color: darkblue;
+        }
+    }
+    .navLink{
+        justify-content: space-between;
+        a{
+            display: none;
+        }
+    }
+    .hide{
+        display: block;
+        @include flex(none,flex-start,column,8px);
+        padding:10px;
+        height: 100%;
+        width: 40%;
+        background-color: $link_background;
+        position: absolute;
+        right: 0;
+        z-index:100;
+        a{
+            background-color: darkblue;
+            color: #fff;
+            width: 90%;
+            display: block;
+            margin-top: 10px;
+        }
+    }
+    .search{
+        display: none !important;
+    }
+    .search_input{
+        display: block !important;
+    }
+    .signup_inputs{
+        border: none !important;
+        input{
+            width: 230px !important;
+        }
+
+    }
+    .profileContainer{
+        h2{
+            font-size: 20px;
+        }
+    }
+    .responsoiveLogin{
+        display: block;
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        a {
+            text-decoration: none;
+            color: $link_text_color;
+            padding: 10px 12px;
+            border: 1px solid cyan;
+            border-radius: 4px;
+    
+            &:hover {
+                background-color: $link_hover_color;
+                border: 1px solid blueviolet;
+                color: black;
+            }
+        }
     }
 }

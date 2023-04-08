@@ -83,7 +83,7 @@ const UpdateProduct = () => {
   const sendProduct = async () => {
     let { name,userId ,category,company,price} = state;
       try {
-        const res = await axios.patch(`http://localhost:8000/productupdate?userid=${userId}&productid=${params.productId}`,{
+        const res = await axios.patch(`https://dashbord-server.onrender.com/productupdate?userid=${userId}&productid=${params.productId}`,{
           name:name,
           "price":price,
           "category":category,

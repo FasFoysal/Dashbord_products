@@ -62,7 +62,7 @@ const AddProduct = () => {
     let { name, price, category, company, userId } = state;
     if (name && price && category && company && userId) {
       try {
-        const res = await axios.post("http://localhost:8000/addproduct", {
+        const res = await axios.post("https://dashbord-server.onrender.com/addproduct", {
           name,
           price,
           category,

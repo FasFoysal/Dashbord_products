@@ -40,7 +40,7 @@ const Profile = () => {
   // submit button data send
   const sendProduct = async () => {
     try {
-      const res = await axios.post("http://localhost:8000/getProducts", {
+      const res = await axios.post("https://dashbord-server.onrender.com/getProducts", {
         _id: auth._id,
       });
       if (res.status === 200) {

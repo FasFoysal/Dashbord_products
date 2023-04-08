@@ -1,13 +1,8 @@
-import { NavLink, Navigate } from "react-router-dom";
+import { useState } from "react";
+import LinksNav from "./LinksNav";
 
 const Links = () => {
-  const logout = () => {
-    localStorage.clear();
-    Navigate("/login");
-  };
-  let auth = localStorage.getItem("data");
-  auth = JSON.parse(auth);
-
+  const [nav, setNav] = useState("none");
   return (
     <>
       <div className="navLink">
@@ -16,12 +11,21 @@ const Links = () => {
           alt="logo"
           src="https://png.pngtree.com/element_pic/16/11/02/bd886d7ccc6f8dd8db17e841233c9656.jpg"
         />
-        <NavLink to="/Products">Products</NavLink>
-        <NavLink to="/product/addproducts">Add Products</NavLink>
-        <NavLink to={`/profile/${auth.name}/${auth._id}`}>Profile</NavLink>
-        <NavLink to="/login" onClick={logout}>
-          Logout ({auth.name})
-        </NavLink>
+        <LinksNav />
+        <div
+          className="line"
+          onClick={() => {
+            nav === "none" ? setNav("block") : setNav("none");
+          }}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      {/* {isSmallScreen?setNav("block"):setNav("none")} */}
+      <div className="hide" style={{ display: `${nav}` }}>
+        <LinksNav />
       </div>
     </>
   );

@@ -36,7 +36,7 @@ const Signup = () => {
     const {name,email,password} = state;
     if ( name && email && password.length >= 4) {
       try {
-        const res = await axios.post("http://localhost:8000/signup",{
+        const res = await axios.post("https://dashbord-server.onrender.com/signup",{
           name,email,password
         })
         if(res.status === 200){

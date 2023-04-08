@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { NavLink } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import Button from "@mui/material/Button";
+import { useMediaQuery } from 'react-responsive'
 
 // user get
 const auth = localStorage.getItem("data");
@@ -46,8 +47,10 @@ const Products = () => {
   useEffect(() => {
     searchData();
   }, [findValue]);
-
+// auth check
   const auth = JSON.parse(localStorage.getItem("data"));
+  // responsive check
+  const isSmallScreen = useMediaQuery({ query: '(max-width: 620px)' })
 
   //filter myProduct
   const myProduct = () => {
@@ -75,7 +78,7 @@ const Products = () => {
   // submit button data send
   const sendProduct = async () => {
     try {
-      const res = await axios.post("http://localhost:8000/getProducts", {
+      const res = await axios.post("https://dashbord-server.onrender.com/getProducts", {
         _id: user_Id._id,
       });
       if (res.status === 200) {
@@ -98,7 +101,7 @@ const Products = () => {
   const deleteItem = async (id) => {
     try {
       let res = await axios.delete(
-        `http://localhost:8000/productdelete?userid=${auth._id}&productid=${id}`
+        `https://dashbord-server.onrender.com/productdelete?userid=${auth._id}&productid=${id}`
       );
       if (res.status === 200) {
         notify(res.data.mgs, res.data.code);
@@ -113,7 +116,7 @@ const Products = () => {
     try {
       if (findValue) {
         const res = await axios.get(
-          `http://localhost:8000/searchdata/${user_Id._id}/${findValue}`
+          `https://dashbord-server.onrender.com/searchdata/${user_Id._id}/${findValue}`
         );
         setState(res.data);
       } else {
@@ -139,7 +142,7 @@ const Products = () => {
             My Products
           </Button>
           <Button
-            className="uk-animation-toggle"
+            className="uk-animation-toggle search"
             onClick={() => {
               search ? setSearch(false) : setSearch(true);
             }}
@@ -150,8 +153,8 @@ const Products = () => {
           </Button>
         </div>
 
-        {search ? (
-          <div className="uk-animation-slide-bottom" style={{ textAlign: "center", margin: "10px 0" }}>
+        {search || isSmallScreen? (
+          <div className="uk-animation-slide-bottom search_input" style={{ textAlign: "center", margin: "10px 0" }}>
             <div
               
               className="uk-search uk-search-default"
