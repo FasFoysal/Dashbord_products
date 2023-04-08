@@ -85,7 +85,7 @@ body p {
 }
 .product .productMain {
   display: flex;
-  justify-content: none;
+  justify-content: center;
   align-items: none;
   flex-direction: row;
   gap: 16px;
@@ -120,6 +120,19 @@ body p {
   width: 100%;
   padding: 0.5rem 0;
   background-color: rgba(0, 0, 0, 0.4509803922);
+}
+
+.profile {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10;
+}
+.profile .profileContainer {
+  box-shadow: 0px 0px 5px 2px darkblue;
+  padding: 10px;
 }
 
 /*# sourceMappingURL=index.css.map */

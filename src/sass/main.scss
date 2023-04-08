@@ -88,7 +88,7 @@ body {
     margin: auto;
     border-top:2px solid blueviolet;
     .productMain {
-        @include flex(none, none, row, 16px);
+        @include flex(center, none, row, 16px);
         flex-wrap: wrap;
         margin-bottom: 100px;
         width: 90%;
@@ -119,4 +119,13 @@ body {
     width: 100%;
     padding: .5rem 0;
     background-color: $link_background;
+}
+.profile{
+    height: 60vh;
+    @include flex(center,center,column,10);
+        .profileContainer{
+            box-shadow: 0px 0px 5px 2px darkblue;
+    padding: 10px;
+        
+    }
 }
