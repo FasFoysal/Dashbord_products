@@ -4,6 +4,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { NavLink } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import Button from "@mui/material/Button";
+import { useMediaQuery } from 'react-responsive'
 
 // user get
 const auth = localStorage.getItem("data");
@@ -46,8 +47,10 @@ const Products = () => {
   useEffect(() => {
     searchData();
   }, [findValue]);
-
+// auth check
   const auth = JSON.parse(localStorage.getItem("data"));
+  // responsive check
+  const isSmallScreen = useMediaQuery({ query: '(max-width: 620px)' })
 
   //filter myProduct
   const myProduct = () => {
@@ -57,9 +60,9 @@ const Products = () => {
         return data.userId === user;
       });
     });
-    toast.success("Your products 🙃",{
-      position:"top-center"
-    })
+    toast.success("Your products 🙃", {
+      position: "top-center",
+    });
   };
 
   //filter allProduct
@@ -67,15 +70,15 @@ const Products = () => {
     setState(() => {
       return filter;
     });
-    toast.success("All products 😀",{
-      position:"top-center"
-    })
+    toast.success("All products 😀", {
+      position: "top-center",
+    });
   };
 
   // submit button data send
   const sendProduct = async () => {
     try {
-      const res = await axios.post("http://localhost:8000/getProducts", {
+      const res = await axios.post("https://dashbord-server.onrender.com/getProducts", {
         _id: user_Id._id,
       });
       if (res.status === 200) {
@@ -98,7 +101,7 @@ const Products = () => {
   const deleteItem = async (id) => {
     try {
       let res = await axios.delete(
-        `http://localhost:8000/productdelete?userid=${auth._id}&productid=${id}`
+        `https://dashbord-server.onrender.com/productdelete?userid=${auth._id}&productid=${id}`
       );
       if (res.status === 200) {
         notify(res.data.mgs, res.data.code);
@@ -109,113 +112,131 @@ const Products = () => {
     }
   };
   // find product state set
-  const searchData = async()=>{
+  const searchData = async () => {
     try {
-      if(findValue){
-      const res = await axios.get(`http://localhost:8000/searchdata/${user_Id._id}/${findValue}`)
-      setState(res.data)
-      }else{
-        sendProduct()
+      if (findValue) {
+        const res = await axios.get(
+          `https://dashbord-server.onrender.com/searchdata/${user_Id._id}/${findValue}`
+        );
+        setState(res.data);
+      } else {
+        sendProduct();
       }
     } catch (error) {
       console.log(error);
     }
-  }
- 
+  };
+
   return (
     <>
       <div className="product">
         <div className="filter">
-          <h3 className="uk-button uk-button-primary" onClick={allProduct}>
+          <Button variant="outlined" onClick={allProduct}>
             All Products
-          </h3>
-          <h3 className="uk-button uk-button-primary" onClick={myProduct}>
+          </Button>
+          <Button
+            variant="outlined"
+            onClick={myProduct}
+            style={{ marginLeft: "10px" }}
+          >
             My Products
-          </h3>
-          <Button className="uk-animation-toggle" onClick={()=>{search?setSearch(false):setSearch(true)}} style={{ marginLeft: "10px" }} variant="outlined">
+          </Button>
+          <Button
+            className="uk-animation-toggle search"
+            onClick={() => {
+              search ? setSearch(false) : setSearch(true);
+            }}
+            style={{ marginLeft: "10px" }}
+            variant="outlined"
+          >
             <SearchIcon />
           </Button>
         </div>
 
-        {
-          search?
-          <div className="uk-margin uk-text-center uk-animation-slide-bottom">
-          <div className="uk-search uk-search-default">
-            <input
-              onChange={(e)=>{
-                setFindValue(e.target.value);
-              }}
-              value={findValue}
-              style={{background: "aliceblue"}}
-              className="uk-search-input"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
+        {search || isSmallScreen? (
+          <div className="uk-animation-slide-bottom search_input" style={{ textAlign: "center", margin: "10px 0" }}>
+            <div
+              
+              className="uk-search uk-search-default"
+            >
+              <input
+                onChange={(e) => {
+                  setFindValue(e.target.value);
+                }}
+                value={findValue}
+                style={{ background: "aliceblue",padding:"8px 20px" ,border:"2px solid lightblue"}}
+                className="uk-search-input"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+              />
+            </div>
           </div>
-        </div>
-        : ""
-        }
+        ) : (
+          ""
+        )}
 
         <div className="productMain">
-          {
-            state.length?
-          state.map((data, index) => {
-            return (
-              <div key={index} className="uk-animation-slide-right">
-                <div
-                  style={{ width: "300px" }}
-                  className="uk-card uk-card-default"
-                >
-                  <div className="uk-card-media-top uk-overflow-hidden">
-                    <img
-                      className="uk-animation-reverse uk-transform-origin-top-right"
-                      uk-scrollspy="cls: uk-animation-kenburns; repeat: true"
-                      src={data.img}
-                      width="300"
-                      height="200"
-                      alt="product"
-                    />
-                  </div>
-                  <div className="uk-card-body">
-                    <h3 className="uk-card-title">Name: {data.name}</h3>
-                    <p>Price: {data.price}$</p>
-                    <p>category: {data.category}</p>
-                    <p>company: {data.company}</p>
-                    <div className="uk-flex uk-flex-center uk-flex-middle uk-margin-top">
-                      {auth._id === data.userId ? (
-                        <>
-                          <button
-                            style={{ height: "fit-content" }}
-                            onClick={() => {
-                              deleteItem(data._id);
-                            }}
-                            className="uk-button uk-button-danger uk-animation-fade"
-                          >
-                            Delete
-                          </button>
+          {state.length ? (
+            state.map((data, index) => {
+              return (
+                <div key={index} className="uk-animation-slide-right">
+                  <div
+                    style={{ width: "300px" }}
+                    className="uk-card uk-card-default"
+                  >
+                    <div className="uk-card-media-top uk-overflow-hidden">
+                      <img
+                        className="uk-animation-reverse uk-transform-origin-top-right"
+                        uk-scrollspy="cls: uk-animation-kenburns; repeat: true"
+                        src={data.img}
+                        width="300"
+                        height="200"
+                        alt="product"
+                      />
+                    </div>
+                    <div className="uk-card-body">
+                      <h3 className="uk-card-title">Name: {data.name}</h3>
+                      <p>Price: {data.price}$</p>
+                      <p>Category: {data.category}</p>
+                      <p>Company: {data.company}</p>
+                      <div className="uk-flex uk-flex-center uk-flex-middle uk-margin-top">
+                        {auth._id === data.userId ? (
+                          <>
+                            <Button
+                              variant="contained"
+                              color="error"
+                              onClick={() => {
+                                deleteItem(data._id);
+                              }}
+                            >
+                              Delete
+                            </Button>
 
-                          <NavLink
-                            style={{ marginLeft: "15px" }}
-                            to={`/updateproducts/${data.name}/${data.price}/${data.category}/${data.company}/${data._id}`}
-                            className="uk-button uk-button-primary"
-                          >
-                            Update
-                          </NavLink>
-                        </>
-                      ) : (
-                        ""
-                      )}
+                            <NavLink
+                              style={{
+                                marginLeft: "15px",
+                                textDecoration: "none",
+                              }}
+                              to={`/updateproducts/${data.name}/${data.price}/${data.category}/${data.company}/${data._id}`}
+                            >
+                              <Button color="success" variant="contained">
+                                Update
+                              </Button>
+                            </NavLink>
+                          </>
+                        ) : (
+                          ""
+                        )}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-            
-          })
-          :
-            <h2 style={{margin:"auto"}}>No products found...</h2>
-        }
+              );
+            })
+          ) : (
+            <h2 style={{ margin: "auto" }}>No products found...</h2>
+          )}
         </div>
       </div>
 

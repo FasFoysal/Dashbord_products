@@ -32,7 +32,7 @@ const Login = (props) => {
         const {email,password} = state;
         if(email && password){
             try {
-                const res = await axios.post("http://localhost:8000/login",{
+                const res = await axios.post("https://dashbord-server.onrender.com/login",{
                     email,password
                 });
                 // res.data 

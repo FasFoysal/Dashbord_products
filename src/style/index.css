@@ -67,10 +67,13 @@ body p {
 }
 .signup .signup_inputs button {
   padding: 0.5rem;
-  border: 2px solid green;
-  background-color: blue;
-  width: 20%;
-  color: #fff;
+  border: 1px solid darkblue;
+  background-color: lightblue;
+  padding: 8px 20px;
+  color: green;
+  margin: auto;
+  border-radius: 5px;
+  font-weight: bolder;
 }
 .signup .signup_inputs button:hover {
   cursor: pointer;
@@ -85,7 +88,7 @@ body p {
 }
 .product .productMain {
   display: flex;
-  justify-content: none;
+  justify-content: center;
   align-items: none;
   flex-direction: row;
   gap: 16px;
@@ -120,6 +123,111 @@ body p {
   width: 100%;
   padding: 0.5rem 0;
   background-color: rgba(0, 0, 0, 0.4509803922);
+}
+
+.profile {
+  height: 60vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10;
+}
+.profile .profileContainer {
+  box-shadow: 0px 0px 5px 2px darkblue;
+  padding: 10px;
+}
+
+.line {
+  display: none;
+}
+
+.hide {
+  display: none;
+}
+
+.search {
+  display: block;
+}
+
+.responsoiveLogin {
+  display: none;
+}
+
+@media only screen and (max-width: 620px) {
+  .line {
+    display: flex;
+    justify-content: none;
+    align-items: none;
+    flex-direction: column;
+    gap: 5px;
+    width: 40px;
+  }
+  .line span {
+    padding: 2px 6px;
+    background-color: darkblue;
+  }
+  .navLink {
+    justify-content: space-between;
+  }
+  .navLink a {
+    display: none;
+  }
+  .hide {
+    display: block;
+    display: flex;
+    justify-content: none;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    padding: 10px;
+    height: 100%;
+    width: 40%;
+    background-color: rgba(0, 0, 0, 0.4509803922);
+    position: absolute;
+    right: 0;
+    z-index: 100;
+  }
+  .hide a {
+    background-color: darkblue;
+    color: #fff;
+    width: 90%;
+    display: block;
+    margin-top: 10px;
+  }
+  .search {
+    display: none !important;
+  }
+  .search_input {
+    display: block !important;
+  }
+  .signup_inputs {
+    border: none !important;
+  }
+  .signup_inputs input {
+    width: 230px !important;
+  }
+  .profileContainer h2 {
+    font-size: 20px;
+  }
+  .responsoiveLogin {
+    display: block;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+  }
+  .responsoiveLogin a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 12px;
+    border: 1px solid cyan;
+    border-radius: 4px;
+  }
+  .responsoiveLogin a:hover {
+    background-color: cyan;
+    border: 1px solid blueviolet;
+    color: black;
+  }
 }
 
 /*# sourceMappingURL=index.css.map */
