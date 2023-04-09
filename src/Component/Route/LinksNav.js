@@ -1,14 +1,15 @@
-import { NavLink, Navigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import React from "react";
 
-const logout = () => {
-  localStorage.clear();
-  Navigate("/login");
-};
+// auth check
 let auth = localStorage.getItem("data");
 auth = JSON.parse(auth);
-
+// main component
 const LinksNav = () => {
+  const logout = () => {
+    localStorage.clear();
+    document.location.reload(true);
+  };
   return (
     <>
       <NavLink to="/Products">Products</NavLink>

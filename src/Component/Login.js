@@ -121,7 +121,7 @@ const Login = (props) => {
             value={state.password}
           />
           
-          <button onClick={submitData} >Signup</button>
+          <button onClick={submitData} >Login</button>
           <p>
             Create Account{" "}
             <span
